@@ -1,0 +1,17 @@
+# @sharadox/interface-web-library
+
+> Accessible, themable React 19 interface pieces with no words of their own (every label is a property) and no global stylesheet (CSS modules read --interface-* custom properties).
+
+- /interface-theme: InterfaceTheme({ theme: Partial<{ background, surface, surfaceRaised, text, textSoft, line, accent, accentText, danger, success, radius, smallRadius, font, fontDisplay, barHeight, shadow, fieldBackground, fieldBorder, fieldHeight, fieldFocus, labelSize, labelSpacing, labelCase }>, className? }); interfaceThemeStyle(theme) → { "--interface-…": value }
+- /button: Button({ look?: "primary" | "quiet" | "danger" | "plain", pending?, pendingLabel?, icon? (icon-web-library IconName), ...button attributes })
+- /card: Card({ title?, description?, tone?: "danger", children })
+- /code-boxes: CodeBoxes({ label, digitLabel, ofLabel, name?, length? (6), onComplete?(code), invalid?, disabled?, describedBy?, autoFocus? }); paste fills every box
+- /copy-button: CopyButton({ value, label, copiedLabel, onCopied? })
+- /dialog: Dialog({ open, onClose, title, closeLabel, children }) — native modal <dialog>, centered, Escape/backdrop/close button
+- /pending-mark: PendingMark({ label }) — role=status spinner beside an optimistic value
+- /skeleton: Skeleton({ label, shape?: "lines" | "card" | "list" | "profile" | "cards", lines?, rows?, height? })
+- /switch: Switch({ label, checked, onChange(checked) → Promise<boolean | unknown> }) — optimistic: flips at once, aria-busy loader, flips back when onChange answers false
+- /text-field: TextField({ label, tip?: { text, label }, prefix?, suffix?, hint?, error?, ...input }) — prefix/suffix are separate sections
+- /tip: Tip({ text, label })
+- /toast: ToastProvider({ label, dismissLabel, duration? }), useToast().notify(message, tone?: "success" | "info" | "error")
+- SCSS: @use "style/interface" as *; tokens ($background, $surface, $raised, $text, $soft, $line, $accent, $accent-text, $danger, $success, $radius, $small-radius, $font, $display, $bar, $shadow, $field-*, $label-*), mixins scrollbar, focus, card, visually-hidden

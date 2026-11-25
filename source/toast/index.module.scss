@@ -1,0 +1,74 @@
+@use "style/interface" as *;
+
+.region {
+  position: fixed;
+  top: calc(#{$bar} + 12px);
+  right: 16px;
+  z-index: 60;
+  display: grid;
+  gap: 8px;
+  width: min(360px, calc(100vw - 32px));
+  pointer-events: none;
+}
+.toast {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 10px;
+  padding: 12px 12px 12px 14px;
+  border: 1px solid $line;
+  border-radius: $radius;
+  background: $raised;
+  box-shadow: $shadow;
+  color: $text;
+  font-size: 14px;
+  line-height: 1.5;
+  pointer-events: auto;
+  animation: arrive 0.35s $ease;
+  > svg {
+    margin-top: 2px;
+    font-size: 18px;
+  }
+  p {
+    margin: 0;
+  }
+}
+.success > svg {
+  color: $success;
+}
+.info > svg {
+  color: $accent;
+}
+.error {
+  border-color: $danger;
+  > svg {
+    color: $danger;
+  }
+}
+.close {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: $soft;
+  cursor: pointer;
+  @include focus;
+  &:hover {
+    color: $text;
+  }
+}
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}

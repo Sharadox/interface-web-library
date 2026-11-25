@@ -1,0 +1,35 @@
+@use "style/interface" as *;
+
+.boxes {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 48px));
+  justify-content: center;
+  gap: 8px;
+}
+.box {
+  width: 100%;
+  min-width: 0;
+  height: 56px;
+  padding: 0;
+  border: 1px solid $line;
+  border-radius: $small-radius;
+  background: $raised;
+  color: $text;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  caret-color: $accent;
+  transition: border-color 0.2s;
+  &:focus {
+    border-color: $accent;
+    outline: 0;
+    box-shadow: 0 0 0 1px $accent;
+  }
+  &[aria-invalid] {
+    border-color: $danger;
+  }
+  &:disabled {
+    opacity: 0.6;
+  }
+}
