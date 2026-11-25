@@ -1,0 +1,86 @@
+@use "style/interface" as *;
+
+.skeleton {
+  display: grid;
+  gap: 12px;
+}
+.line,
+.block,
+.circle,
+.dot,
+.button {
+  display: block;
+  border-radius: $small-radius;
+  background: linear-gradient(90deg, $surface 25%, $line 50%, $surface 75%);
+  background-size: 300% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+.line {
+  height: 14px;
+}
+.short {
+  width: 60%;
+}
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  @include card;
+}
+.profile {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+}
+.circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+.stack {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 0;
+}
+.dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.button {
+  width: 84px;
+  height: 32px;
+  border-radius: 999px;
+}
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .block,
+  .circle,
+  .dot,
+  .button {
+    animation: none;
+  }
+}

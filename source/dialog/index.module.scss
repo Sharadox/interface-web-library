@@ -1,0 +1,75 @@
+@use "style/interface" as *;
+
+.dialog {
+  /* Always in the middle of the screen, whatever a site resets margins and positions to. */
+  position: fixed;
+  inset: 0;
+  width: min(440px, calc(100vw - 32px));
+  height: fit-content;
+  margin: auto;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid $line;
+  border-radius: $radius;
+  background: $raised;
+  box-shadow: $shadow;
+  color: $text;
+  font-family: $font;
+  overflow: auto;
+  @include scrollbar;
+  &::backdrop {
+    background: rgb(0 0 0 / 50%);
+    backdrop-filter: blur(4px);
+  }
+  &[open] {
+    animation: rise 0.3s $ease;
+  }
+}
+.inside {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+.header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.title {
+  margin: 0;
+  font-family: $display;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: $soft;
+  font-size: 18px;
+  cursor: pointer;
+  @include focus;
+  &:hover {
+    background: $surface;
+    color: $text;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open] {
+    animation: none;
+  }
+}

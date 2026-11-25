@@ -1,0 +1,31 @@
+@use "style/interface" as *;
+
+.card {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 20px;
+  @include card;
+  @media (max-width: 480px) {
+    padding: 16px;
+  }
+}
+.danger {
+  border-color: $danger;
+}
+.title {
+  margin: 0;
+  font-family: $display;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.description {
+  margin: 0;
+  color: $soft;
+  font-size: 14.5px;
+  line-height: 1.6;
+  p {
+    margin: 0;
+  }
+}

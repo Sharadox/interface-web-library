@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@sharadox/icon-web-library':
+        specifier: 0.7.0-development.36
+        version: 0.7.0-development.36(react@19.3.1)
       '@sharadox/web-library':
-        specifier: ^0.11.1
-        version: 0.11.1
+        specifier: 0.12.0-development.49
+        version: 0.12.0-development.49
     devDependencies:
       '@sharadox/es-lint-configuration-web-library':
         specifier: ^0.1.3
@@ -458,6 +461,15 @@ packages:
       eslint-config-next:
         optional: true
 
+  '@sharadox/icon-web-library@0.7.0-development.36':
+    resolution: {integrity: sha512-sHNAYQ/jgHpT2zkGlPEKzJAk4OMZvY8tGM4j84wIyviQ7daewM3CVdeCaZ6j4dKS3qbqPSTP+GnbmSqvQ4gRFA==}
+    engines: {node: '>=26'}
+    peerDependencies:
+      react: '>=19'
+    peerDependenciesMeta:
+      react:
+        optional: true
+
   '@sharadox/library-build-web-library@0.2.1':
     resolution: {integrity: sha512-e4WXdeRUvaXYJUsBCD121NUMBrC6PUc9ucoiNiAsZhITMNmF2ZGzeXtDDjKY2azIpl16qHJSrmN9A5S1/KK8eQ==}
     engines: {node: '>=26'}
@@ -489,8 +501,8 @@ packages:
       '@vitest/coverage-v8': '>=5'
       vitest: '>=5'
 
-  '@sharadox/web-library@0.11.1':
-    resolution: {integrity: sha512-8DZLPOh45wG/e0sdfR+dKEX33pOZzV5bNOfPS5MwQTu41mj+NyE4OWqO2XElacMUSA1EBhGF4Gpt5XVz/NWsaQ==}
+  '@sharadox/web-library@0.12.0-development.49':
+    resolution: {integrity: sha512-BjZXrZoLoCNVlIkQtY4gD1Ibgb2xC2WBzGJh7veESutqAlQqA199yM22NFEywRn5Cvsqkc417G+ZV+vTzhc7Gg==}
     engines: {node: '>=26'}
 
   '@shikijs/engine-oniguruma@3.23.0':
@@ -1876,6 +1888,10 @@ snapshots:
       - '@typescript/native'
       - supports-color
 
+  '@sharadox/icon-web-library@0.7.0-development.36(react@19.3.1)':
+    optionalDependencies:
+      react: 19.3.1
+
   '@sharadox/library-build-web-library@0.2.1(typescript@6.0.3)':
     dependencies:
       sass: 1.108.2
@@ -1902,7 +1918,7 @@ snapshots:
       - oxc-transform-react
       - vite
 
-  '@sharadox/web-library@0.11.1': {}
+  '@sharadox/web-library@0.12.0-development.49': {}
 
   '@shikijs/engine-oniguruma@3.23.0':
     dependencies:

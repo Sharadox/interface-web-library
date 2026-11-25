@@ -1,0 +1,24 @@
+@use "style/interface" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid $line;
+  border-radius: $small-radius;
+  background: transparent;
+  color: $text;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  @include focus;
+  &:hover {
+    border-color: $soft;
+  }
+  svg {
+    font-size: 16px;
+  }
+}

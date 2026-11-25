@@ -1,0 +1,81 @@
+@use "style/interface" as *;
+
+:where(.field) {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: $soft;
+  font-size: $label-size;
+  font-weight: 600;
+  letter-spacing: $label-spacing;
+  text-transform: $label-case;
+}
+.group {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  border: 1px solid $field-border;
+  border-radius: $small-radius;
+  background: $field-background;
+  overflow: hidden;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.4s;
+  &:hover {
+    border-color: color-mix(in srgb, #{$accent} 45%, transparent);
+  }
+  &:focus-within {
+    border-color: $accent;
+    box-shadow: $field-focus;
+  }
+}
+.invalid {
+  border-color: $danger;
+}
+.prefix,
+.suffix {
+  display: flex;
+  flex: none;
+  align-items: center;
+  padding: 0 12px;
+  background: $surface;
+  color: $soft;
+  font-size: 15px;
+  user-select: none;
+}
+.prefix {
+  border-right: 1px solid $line;
+}
+.suffix {
+  border-left: 1px solid $line;
+}
+.input {
+  flex: 1;
+  min-width: 0;
+  min-height: $field-height;
+  padding: 0 12px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: $text;
+  font: inherit;
+  font-size: 15px;
+  &::placeholder {
+    color: $soft;
+  }
+}
+.hint {
+  color: $soft;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.error {
+  color: $danger;
+  font-size: 13px;
+  line-height: 1.5;
+}

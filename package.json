@@ -64,7 +64,8 @@
     "*.{json,md,yml,yaml,scss}": "prettier --write"
   },
   "dependencies": {
-    "@sharadox/web-library": "^0.11.1"
+    "@sharadox/icon-web-library": "0.7.0-development.36",
+    "@sharadox/web-library": "0.12.0-development.49"
   },
   "devDependencies": {
     "@sharadox/es-lint-configuration-web-library": "^0.1.3",

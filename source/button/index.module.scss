@@ -1,0 +1,78 @@
+@use "style/interface" as *;
+
+:where(.button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: $small-radius;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    opacity 0.2s,
+    transform 0.2s $ease;
+  @include focus;
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+  svg {
+    flex: none;
+    font-size: 18px;
+  }
+}
+.primary {
+  background: $accent;
+  color: $accent-text;
+}
+.quiet {
+  border-color: $line;
+  background: transparent;
+  color: $text;
+  &:hover:not(:disabled) {
+    border-color: $soft;
+  }
+}
+.danger {
+  background: $danger;
+  color: #ffffff;
+}
+.plain {
+  min-height: 32px;
+  padding: 0 8px;
+  background: transparent;
+  color: $text;
+  &:hover:not(:disabled) {
+    background: $surface;
+  }
+}
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2.4s;
+  }
+}
