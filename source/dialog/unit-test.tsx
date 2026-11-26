@@ -12,6 +12,11 @@ beforeAll(() => {
   };
   HTMLDialogElement.prototype.close = function (this: HTMLDialogElement) {
     this.removeAttribute("open");
+    this.removeAttribute("data-modal");
+  };
+  HTMLDialogElement.prototype.show = function (this: HTMLDialogElement) {
+    this.setAttribute("open", "");
+    this.setAttribute("data-modal", "no");
   };
 });
 
@@ -104,6 +109,27 @@ test("closed from the start it stays closed; an animation inside it, or while op
   );
   fireEvent.animationEnd(screen.getByText("Inside"));
   expect(dialog.open).toBe(true);
+  fireEvent.animationEnd(dialog);
+  expect(dialog.open).toBe(false);
+});
+
+test("while it leaves, it is no longer modal: the page behind works at once (a field can be typed in)", () => {
+  const close = vi.fn();
+  const { rerender, container } = render(
+    <Dialog open onClose={close} title="T" closeLabel="Close">
+      <p>Inside</p>
+    </Dialog>,
+  );
+  const dialog = container.querySelector("dialog")!;
+  expect(dialog.dataset.modal).toBeUndefined();
+  rerender(
+    <Dialog open={false} onClose={close} title="T" closeLabel="Close">
+      <p>Inside</p>
+    </Dialog>,
+  );
+  // Still on screen for its animation, shown without the modal's inert page.
+  expect(dialog.open).toBe(true);
+  expect(dialog.dataset.modal).toBe("no");
   fireEvent.animationEnd(dialog);
   expect(dialog.open).toBe(false);
 });

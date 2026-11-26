@@ -10,7 +10,7 @@ const LEAVING_MILLISECONDS = 300;
 /**
  * A pop-up over the page (the browser's own modal dialog: focus stays inside, the page behind is inert), named by its
  * title, closed by Escape, its close button or a click on the backdrop. It leaves the way it came: the opening
- * animation runs backwards before it closes.
+ * animation runs backwards before it closes, no longer modal meanwhile, so the page behind works at once.
  *
  * @example
  * <Dialog open={asking} onClose={() => setAsking(false)} title="Check Your Email" closeLabel="Close">…</Dialog>
@@ -33,6 +33,10 @@ export function Dialog({ open, onClose, title, closeLabel, children }: DialogPro
     const element = dialog.current!;
     if (open && !element.open) element.showModal();
     if (!leaving) return;
+    // Leaving, it stops being modal at once, so the page behind works straight away (a field can be typed in);
+    // it only stays on screen for its animation.
+    element.close();
+    element.show();
     const timer = setTimeout(finish, LEAVING_MILLISECONDS);
     return () => clearTimeout(timer);
   }, [open, leaving]);

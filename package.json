@@ -1,6 +1,6 @@
 {
   "name": "@sharadox/interface-web-library",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Accessible, themable interface pieces for web applications: buttons, cards, dialogs, one-time code boxes, switches, text fields with prefixes, tips, copy buttons, skeletons and notifications.",
   "private": false,
   "license": "SEE LICENSE IN LICENCA.md",
