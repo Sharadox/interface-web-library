@@ -54,8 +54,13 @@ test("letters are ignored, and backspace and arrows move between boxes", () => {
   expect(document.activeElement).toBe(boxes()[1]);
   fireEvent.keyDown(boxes()[0]!, { key: "ArrowLeft" });
   fireEvent.keyDown(boxes()[5]!, { key: "ArrowRight" });
+  // Backspace on the filled first box clears it; again, on the empty first box, stays there.
   fireEvent.keyDown(boxes()[0]!, { key: "Backspace" });
+  expect(boxes()[0]!.value).toBe("");
+  fireEvent.keyDown(boxes()[0]!, { key: "Backspace" });
+  expect(document.activeElement).toBe(boxes()[0]);
   fireEvent.keyDown(boxes()[1]!, { key: "x" });
+  fireEvent.change(boxes()[0]!, { target: { value: "4" } });
   // Typing over a filled box replaces its digit.
   fireEvent.change(boxes()[0]!, { target: { value: "47" } });
   expect(boxes()[0]!.value).toBe("7");
@@ -78,4 +83,28 @@ test("without a name there is no hidden field; disabled boxes can't be typed in"
   render(<CodeBoxes label="Code" digitLabel="digit" ofLabel="of" disabled />);
   expect(document.querySelector('input[type="hidden"]')).toBeNull();
   expect((screen.getAllByRole("textbox")[0] as HTMLInputElement).disabled).toBe(true);
+});
+
+test("Backspace or Delete on a filled box clears that box and stays on it", () => {
+  render(<CodeBoxes label="Code" digitLabel="digit" ofLabel="of" name="code" />);
+  fireEvent.paste(boxes()[0]!, { clipboardData: { getData: () => "123456" } });
+  boxes()[2]!.focus();
+  fireEvent.keyDown(boxes()[2]!, { key: "Backspace" });
+  expect(boxes()[2]!.value).toBe("");
+  expect(document.activeElement).toBe(boxes()[2]);
+  fireEvent.keyDown(boxes()[4]!, { key: "Delete" });
+  expect(boxes()[4]!.value).toBe("");
+  fireEvent.keyDown(boxes()[4]!, { key: "Delete" });
+  expect(hidden().value).toBe("1246");
+  expect(boxes().map(({ value }) => value)).toEqual(["1", "2", "", "4", "", "6"]);
+});
+
+test("a box typed into after one is cleared fills just that box", () => {
+  const complete = vi.fn();
+  render(<CodeBoxes label="Code" digitLabel="digit" ofLabel="of" name="code" onComplete={complete} />);
+  fireEvent.paste(boxes()[0]!, { clipboardData: { getData: () => "123456" } });
+  fireEvent.keyDown(boxes()[2]!, { key: "Backspace" });
+  fireEvent.change(boxes()[2]!, { target: { value: "9" } });
+  expect(boxes().map(({ value }) => value)).toEqual(["1", "2", "9", "4", "5", "6"]);
+  expect(complete).toHaveBeenLastCalledWith("129456");
 });

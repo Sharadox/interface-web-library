@@ -1,15 +1,18 @@
 @use "style/interface" as *;
 
+/* Square boxes spread evenly over the whole width they are given. */
 .boxes {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 48px));
+  display: flex;
+  align-items: center;
   justify-content: center;
   gap: 8px;
+  width: 100%;
 }
 .box {
-  width: 100%;
+  flex: 1 1 0;
   min-width: 0;
-  height: 56px;
+  max-width: 72px;
+  aspect-ratio: 1;
   padding: 0;
   border: 1px solid $line;
   border-radius: $small-radius;
@@ -20,16 +23,25 @@
   font-weight: 700;
   text-align: center;
   caret-color: $accent;
-  transition: border-color 0.2s;
+  transition:
+    border-color 0.25s $ease,
+    box-shadow 0.25s $ease,
+    transform 0.25s $ease;
   &:focus {
     border-color: $accent;
     outline: 0;
     box-shadow: 0 0 0 1px $accent;
+    transform: translateY(-1px);
   }
   &[aria-invalid] {
     border-color: $danger;
   }
   &:disabled {
     opacity: 0.6;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .box:focus {
+    transform: none;
   }
 }

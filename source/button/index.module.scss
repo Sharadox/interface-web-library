@@ -12,7 +12,6 @@
   font: inherit;
   font-size: 14px;
   font-weight: 600;
-  line-height: 1;
   white-space: nowrap;
   cursor: pointer;
   transition:
@@ -30,7 +29,7 @@
   }
   svg {
     flex: none;
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 .primary {

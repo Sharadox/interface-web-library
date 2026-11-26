@@ -1,0 +1,125 @@
+@use "style/interface" as *;
+
+:where(.field) {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  text-align: start;
+}
+.label {
+  color: $soft;
+  font-size: $label-size;
+  font-weight: 600;
+  letter-spacing: $label-spacing;
+  text-transform: $label-case;
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: $field-height;
+  padding: 0 12px;
+  border: 1px solid $field-border;
+  border-radius: $small-radius;
+  background: $field-background;
+  color: $text;
+  font: inherit;
+  font-size: 16px;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    border-color 0.3s $ease,
+    box-shadow 0.4s $ease;
+  &:hover:not(:disabled) {
+    border-color: color-mix(in srgb, #{$accent} 45%, transparent);
+  }
+  &:focus-visible,
+  &[aria-expanded="true"] {
+    border-color: $accent;
+    outline: 0;
+    box-shadow: $field-focus;
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+}
+.value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.placeholder {
+  color: $soft;
+}
+.chevron {
+  flex: none;
+  color: $soft;
+  transition: transform 0.3s $ease;
+  [aria-expanded="true"] > & {
+    transform: rotate(180deg);
+  }
+}
+.list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  right: 0;
+  left: 0;
+  display: grid;
+  gap: 2px;
+  max-height: 264px;
+  margin: 0;
+  padding: 6px;
+  border: 1px solid $line;
+  border-radius: $small-radius;
+  background: $raised;
+  box-shadow: $shadow;
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  animation: drop 0.22s $ease;
+  @include scrollbar;
+}
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: calc(#{$small-radius} - 2px);
+  color: $text;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+  &[data-active] {
+    background: $surface;
+  }
+  &[aria-selected="true"] {
+    font-weight: 600;
+  }
+}
+.check {
+  flex: none;
+  color: $accent;
+}
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .list {
+    animation: none;
+  }
+  .chevron {
+    transition: none;
+  }
+}
