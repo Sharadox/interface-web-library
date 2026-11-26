@@ -22,7 +22,7 @@ $field-background: var(--interface-field-background, #{$raised});
 $field-border: var(--interface-field-border, #{$line});
 $field-height: var(--interface-field-height, 42px);
 $field-focus: var(--interface-field-focus, 0 0 0 1px #{$accent});
-$label-size: var(--interface-label-size, 13px);
+$label-size: var(--interface-label-size, 12px);
 $label-spacing: var(--interface-label-spacing, normal);
 $label-case: var(--interface-label-case, none);
 $ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -81,7 +81,7 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   min-width: 0;
   > span {
     color: $soft;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
   }
   select,
@@ -94,7 +94,7 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
     background: $raised;
     color: $text;
     font: inherit;
-    font-size: 15px;
+    font-size: 16px;
     &:focus {
       border-color: $accent;
       outline: 0;

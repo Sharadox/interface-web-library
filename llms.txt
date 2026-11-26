@@ -4,12 +4,15 @@
 
 - /interface-theme: InterfaceTheme({ theme: Partial<{ background, surface, surfaceRaised, text, textSoft, line, accent, accentText, danger, success, radius, smallRadius, font, fontDisplay, barHeight, shadow, fieldBackground, fieldBorder, fieldHeight, fieldFocus, labelSize, labelSpacing, labelCase }>, className? }); interfaceThemeStyle(theme) → { "--interface-…": value }
 - /button: Button({ look?: "primary" | "quiet" | "danger" | "plain", pending?, pendingLabel?, icon? (icon-web-library IconName), ...button attributes })
-- /card: Card({ title?, description?, tone?: "danger", children })
-- /code-boxes: CodeBoxes({ label, digitLabel, ofLabel, name?, length? (6), onComplete?(code), invalid?, disabled?, describedBy?, autoFocus? }); paste fills every box
+- /card: Card({ title?, description?, tone?: "danger", action?, children }) — action centered beside the content
+- /checkbox: Checkbox({ label, ...input }) — native checkbox drawn like buttons (outlined / filled)
+- /code-boxes: CodeBoxes({ label, digitLabel, ofLabel, name?, length? (6), onComplete?(code), invalid?, disabled?, describedBy?, autoFocus? }); square boxes over the width; paste fills every box; Backspace/Delete clear the current box
 - /copy-button: CopyButton({ value, label, copiedLabel, onCopied? })
-- /dialog: Dialog({ open, onClose, title, closeLabel, children }) — native modal <dialog>, centered, Escape/backdrop/close button
+- /dialog: Dialog({ open, onClose, title, closeLabel, children }) — native modal <dialog>, centered, Escape/backdrop/close button; leaves with the opening animation reversed
 - /pending-mark: PendingMark({ label }) — role=status spinner beside an optimistic value
 - /skeleton: Skeleton({ label, shape?: "lines" | "card" | "list" | "profile" | "cards", lines?, rows?, height? })
+- /select: Select({ label, options: { value, label }[], value?, defaultValue?, onChange?(value), name?, placeholder?, disabled?, id?, className? }) — custom listbox, native keyboard behavior, hidden input with name
+- /skeleton-value: SkeletonValue({ label?, width? ("8ch"), circle? }) — inline skeleton for one value
 - /switch: Switch({ label, checked, onChange(checked) → Promise<boolean | unknown> }) — optimistic: flips at once, aria-busy loader, flips back when onChange answers false
 - /text-field: TextField({ label, tip?: { text, label }, prefix?, suffix?, hint?, error?, ...input }) — prefix/suffix are separate sections
 - /tip: Tip({ text, label })

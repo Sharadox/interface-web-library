@@ -4,8 +4,8 @@ import styles from "./index.module.scss";
 import type { CodeBoxesProperties } from "@sharadox/interface-web-library/code-boxes/type";
 
 /**
- * A one-time code typed into one box per digit: each digit moves on to the next box, Backspace and the arrows move
- * back and forth, and pasting the code (or the phone filling it in from a message) fills every box at once. The whole
+ * A one-time code typed into one box per digit: each digit moves on to the next box, Backspace or Delete clears the
+ * box it is on (on an empty box, Backspace clears the one before), the arrows move back and forth, and pasting the code (or the phone filling it in from a message) fills every box at once. The whole
  * code is in one hidden field for forms; `onComplete` fires once every box has its digit.
  *
  * @example
@@ -45,12 +45,18 @@ export function CodeBoxes({
     fill(index, typed.length === 2 && digits[index] ? typed.slice(-1) : typed);
   };
 
+  /** Empties box `index`. */
+  const clear = (index: number) => setDigits(digits.map((digit, at) => (at === index ? "" : digit)));
+
   const keyDown = (index: number, event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Backspace" && !digits[index]) {
+    if ((event.key === "Backspace" || event.key === "Delete") && digits[index]) {
+      // A filled box: clear it, wherever it is, and stay on it.
       event.preventDefault();
-      const next = [...digits];
-      next[Math.max(0, index - 1)] = "";
-      setDigits(next);
+      clear(index);
+    } else if (event.key === "Backspace") {
+      // An empty box: clear the one before and go back to it.
+      event.preventDefault();
+      clear(Math.max(0, index - 1));
       focus(index - 1);
     } else if (event.key === "ArrowLeft") focus(index - 1);
     else if (event.key === "ArrowRight") focus(index + 1);

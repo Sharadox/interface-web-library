@@ -37,15 +37,18 @@
 .invalid {
   border-color: $danger;
 }
+/* At least square (an icon or one character sits in a square), wider when its content needs it. */
 .prefix,
 .suffix {
   display: flex;
   flex: none;
   align-items: center;
+  justify-content: center;
+  min-width: $field-height;
   padding: 0 12px;
   background: $surface;
   color: $soft;
-  font-size: 15px;
+  font-size: 16px;
   user-select: none;
 }
 .prefix {
@@ -64,18 +67,16 @@
   background: transparent;
   color: $text;
   font: inherit;
-  font-size: 15px;
+  font-size: 16px;
   &::placeholder {
     color: $soft;
   }
 }
 .hint {
   color: $soft;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 12px;
 }
 .error {
   color: $danger;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 12px;
 }

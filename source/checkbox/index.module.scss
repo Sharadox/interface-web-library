@@ -1,0 +1,79 @@
+@use "style/interface" as *;
+
+:where(.checkbox) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 32px;
+  color: $text;
+  font-size: 14px;
+  text-align: start;
+  cursor: pointer;
+}
+.input {
+  /* Invisible, exactly over the drawn box, so a click on the box is a click on the checkbox itself. */
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+/* Unchecked: outlined like a secondary button. Checked: filled like a primary one. */
+.box {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid $line;
+  border-radius: calc(#{$small-radius} - 2px);
+  background: transparent;
+  color: $accent-text;
+  transition:
+    background-color 0.25s $ease,
+    border-color 0.25s $ease,
+    transform 0.25s $ease;
+  .checkbox:hover & {
+    border-color: $soft;
+  }
+  .input:checked + & {
+    border-color: $accent;
+    background: $accent;
+  }
+  .input:focus-visible + & {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+  .input:active + & {
+    transform: scale(0.92);
+  }
+  .input:disabled + & {
+    opacity: 0.6;
+  }
+}
+.mark {
+  font-size: 14px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity 0.2s $ease,
+    transform 0.25s $ease;
+  .input:checked + .box & {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .box,
+  .mark {
+    transition: none;
+  }
+}

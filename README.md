@@ -43,20 +43,28 @@ anything left out keeps its plain default. `interfaceThemeStyle(theme)` gives th
 
 - **`button`** `Button({ look?, pending?, pendingLabel?, icon?, ...button })`: `primary`, `quiet`, `danger` or
   `plain`; while `pending` a spinner, marked busy, clicks ignored.
-- **`card`** `Card({ title?, description?, tone?, children })`: a panel; `tone="danger"` for what can't be undone.
+- **`card`** `Card({ title?, description?, tone?, action?, children })`: a panel; `tone="danger"` for what can't be
+  undone; an `action` (an Edit button) sits beside the content, centered on the card's height.
+- **`checkbox`** `Checkbox({ label, ...input })`: a real checkbox drawn like the buttons: outlined like a secondary
+  button unchecked, filled like a primary one checked.
 - **`code-boxes`** `CodeBoxes({ label, digitLabel, ofLabel, length?, onComplete?, invalid?, disabled?, ... })`: one box
-  per digit, pasting fills them all, `onComplete` once full; each box reads "Code, digit 3 of 6".
+  per digit, square and spread over the width, pasting fills them all, Backspace or Delete clears the box it is on,
+  `onComplete` once full; each box reads "Code, digit 3 of 6".
 - **`copy-button`** `CopyButton({ value, label, copiedLabel, onCopied? })`.
 - **`dialog`** `Dialog({ open, onClose, title, closeLabel, children })`: the browser's modal dialog, always centered,
-  closed by Escape, its button or the backdrop.
+  closed by Escape, its button or the backdrop, leaving with its opening animation backwards.
 - **`pending-mark`** `PendingMark({ label })`: a small spinner with "Saving…" beside a value already shown as it will
   be.
 - **`skeleton`** `Skeleton({ label, shape?, lines?, rows?, height? })`: `lines`, `card`, `list`, `profile` or `cards`,
   shimmering, read once by screen readers.
+- **`select`** `Select({ label, options, value?, defaultValue?, onChange?, name?, placeholder?, disabled? })`: a select
+  drawn by the interface, keyboard and screen readers as a native one (arrows, Home, End, letters, Enter, Escape).
+- **`skeleton-value`** `SkeletonValue({ label?, width?, circle? })`: a skeleton for one value (a name, a count, a
+  picture), so the labels and buttons around it show at once.
 - **`switch`** `Switch({ label, checked, onChange, disabled? })`: flips the moment it's pressed with a loader on its
   knob, and flips back when `onChange` answers false.
 - **`text-field`** `TextField({ label, tip?, prefix?, suffix?, hint?, error?, ...input })`: the prefix ("@") and suffix
-  are their own sections, never part of the value; an error marks it invalid and is read with it.
+  are their own sections, at least square, never part of the value; an error marks it invalid and is read with it.
 - **`tip`** `Tip({ text, label })`: a question mark beside a label that explains it.
 - **`toast`** `ToastProvider({ label, dismissLabel, duration?, children })` and `useToast().notify(message, tone?)`:
   notifications at the top right below the bar, hiding themselves after a few seconds or closed by hand.

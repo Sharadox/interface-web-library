@@ -1,0 +1,29 @@
+@use "style/interface" as *;
+
+.value {
+  display: inline-block;
+  max-width: 100%;
+  height: 1em;
+  border-radius: calc(#{$small-radius} - 2px);
+  background: linear-gradient(90deg, $surface 25%, $line 50%, $surface 75%);
+  background-size: 300% 100%;
+  vertical-align: middle;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+.circle {
+  flex: none;
+  border-radius: 50%;
+}
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .value {
+    animation: none;
+  }
+}
