@@ -13,11 +13,17 @@
   cursor: pointer;
 }
 .input {
+  /* Invisible, exactly over the drawn box, so a click on the box is a click on the checkbox itself. */
   position: absolute;
-  width: 1px;
-  height: 1px;
+  z-index: 1;
+  top: 50%;
+  left: 0;
+  width: 22px;
+  height: 22px;
   margin: 0;
   opacity: 0;
+  cursor: pointer;
+  transform: translateY(-50%);
 }
 /* Unchecked: outlined like a secondary button. Checked: filled like a primary one. */
 .box {
