@@ -4,7 +4,7 @@ What changed in each version of `@sharadox/interface-web-library`, newest first.
 
 ## 0.2.1
 
-A leaving dialog stops being modal at once, so the page behind works while it animates away. A checkbox's own input lies exactly over its drawn box, so clicking the box clicks the checkbox.
+A leaving dialog stops being modal at once, so the page behind works while it animates away. A checkbox's own input lies exactly over its drawn box, so clicking the box clicks the checkbox. The code boxes fit the width they are given, inside a grid or a flex column too (they no longer push a dialog wider).
 
 ## 0.2.0
 
