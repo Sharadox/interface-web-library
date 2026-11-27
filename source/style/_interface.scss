@@ -36,6 +36,8 @@ $button-weight: var(--interface-button-weight, 600);
 $button-spacing: var(--interface-button-spacing, normal);
 $button-case: var(--interface-button-case, none);
 $primary-background: var(--interface-primary-background, #{$accent});
+// The background's size: wider than the button (`220% 100%`), a gradient slides across on hover, like light on metal.
+$primary-background-size: var(--interface-primary-background-size, auto);
 $primary-text: var(--interface-primary-text, #{$accent-text});
 $primary-shadow: var(--interface-primary-shadow, none);
 $primary-shadow-hover: var(--interface-primary-shadow-hover, #{$primary-shadow});
