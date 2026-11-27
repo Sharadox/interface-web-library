@@ -22,16 +22,21 @@ Next.js (or any bundler that handles CSS modules) is enough; icons come from `@s
 `InterfaceTheme({ theme, className? })` sets `--interface-*` custom properties on a wrapper, which every piece reads;
 anything left out keeps its plain default. `interfaceThemeStyle(theme)` gives the same properties as a style object.
 
-| Value                                                         | What it styles                                    |
-| ------------------------------------------------------------- | ------------------------------------------------- |
-| `background`, `surface`, `surfaceRaised`                      | the page, panels, cards, menus and dialogs        |
-| `text`, `textSoft`, `line`                                    | text, secondary text, lines                       |
-| `accent`, `accentText`, `danger`, `success`                   | buttons, focus rings and links; errors; successes |
-| `radius`, `smallRadius`, `shadow`                             | corners and the shadow of what floats             |
-| `font`, `fontDisplay`                                         | text and headings                                 |
-| `barHeight`                                                   | the site's fixed bar: notifications sit below it  |
-| `fieldBackground`, `fieldBorder`, `fieldHeight`, `fieldFocus` | fields, so they look like the site's own forms    |
-| `labelSize`, `labelSpacing`, `labelCase`                      | field labels (`labelCase: "uppercase"`)           |
+| Value                                                                                                                     | What it styles                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `background`, `surface`, `surfaceRaised`                                                                                  | the page, panels, cards, menus and dialogs                                          |
+| `text`, `textSoft`, `line`                                                                                                | text, secondary text, lines                                                         |
+| `accent`, `accentText`, `danger`, `success`                                                                               | buttons, focus rings and links; errors; successes                                   |
+| `radius`, `smallRadius`, `shadow`                                                                                         | corners and the shadow of what floats                                               |
+| `font`, `fontDisplay`                                                                                                     | text and headings                                                                   |
+| `barHeight`                                                                                                               | the site's fixed bar: notifications sit below it                                    |
+| `fieldBackground`, `fieldBorder`, `fieldHeight`, `fieldFocus`                                                             | fields, so they look like the site's own forms                                      |
+| `labelSize`, `labelSpacing`, `labelCase`                                                                                  | field labels (`labelCase: "uppercase"`)                                             |
+| `buttonRadius`, `buttonHeight`, `buttonPadding`, `buttonGap`, `buttonSize`, `buttonWeight`, `buttonSpacing`, `buttonCase` | every button's shape, size and letters                                              |
+| `primaryBackground`, `primaryText`, `primaryShadow`, `primaryShadowHover`, `primaryGlint`                                 | the filled button (a gradient works; the glint crosses it on hover)                 |
+| `secondaryEdge`, `secondaryEdgeHover`, `secondaryTextHover`                                                               | the outlined button                                                                 |
+| `plainUnderline`                                                                                                          | a line under plain buttons that grows on hover                                      |
+| `cardRadius`, `cardPadding`, `cardBackground`, `cardEdge`, `cardLight`, `cardEdgeLight`                                   | cards: surface, edge (an image, such as a gradient) and the pointer's light on them |
 
 ```tsx
 <InterfaceTheme theme={{ accent: "var(--gold)", font: "var(--font-body)", labelCase: "uppercase" }}>
@@ -41,9 +46,13 @@ anything left out keeps its plain default. `interfaceThemeStyle(theme)` gives th
 
 ## Pieces
 
-- **`button`** `Button({ look?, pending?, pendingLabel?, icon?, ...button })`: `primary`, `quiet`, `danger` or
-  `plain`; while `pending` a spinner, marked busy, clicks ignored.
-- **`card`** `Card({ title?, description?, tone?, action?, children })`: a panel; `tone="danger"` for what can't be
+- **`button`** `Button({ look?, pending?, pendingLabel?, icon?, arrow?, ...button })`: `primary` (filled),
+  `secondary` (outlined), `plain` (text) or `danger`; an arrow after the words that slides on hover (`arrow`); while
+  `pending` a spinner, marked busy, clicks ignored. With `href` a link that looks the same, with the arrow unless
+  `arrow={false}`: next/link's `Link`, or the site's own `link` component (one that glides to sections), with
+  `target`/`rel` for a new tab.
+- **`card`** `Card({ title?, description?, tone?, action?, children })`: a panel whose edge and surface catch the
+  pointer's light (pointer-web-library's spotlight; the theme decides the light); `tone="danger"` for what can't be
   undone; an `action` (an Edit button) sits beside the content, centered on the card's height.
 - **`checkbox`** `Checkbox({ label, ...input })`: a real checkbox drawn like the buttons: outlined like a secondary
   button unchecked, filled like a primary one checked.

@@ -25,6 +25,35 @@ $field-focus: var(--interface-field-focus, 0 0 0 1px #{$accent});
 $label-size: var(--interface-label-size, 12px);
 $label-spacing: var(--interface-label-spacing, normal);
 $label-case: var(--interface-label-case, none);
+// Buttons: their shape, size and letters, and each kind's look (`primary` filled, `secondary` outlined, `plain`
+// text), so a company's buttons look like its own.
+$button-radius: var(--interface-button-radius, #{$small-radius});
+$button-height: var(--interface-button-height, 40px);
+$button-padding: var(--interface-button-padding, 0 16px);
+$button-gap: var(--interface-button-gap, 8px);
+$button-size: var(--interface-button-size, 14px);
+$button-weight: var(--interface-button-weight, 600);
+$button-spacing: var(--interface-button-spacing, normal);
+$button-case: var(--interface-button-case, none);
+$primary-background: var(--interface-primary-background, #{$accent});
+$primary-text: var(--interface-primary-text, #{$accent-text});
+$primary-shadow: var(--interface-primary-shadow, none);
+$primary-shadow-hover: var(--interface-primary-shadow-hover, #{$primary-shadow});
+// A light that crosses the primary button on hover (an image, such as a gradient); none by default.
+$primary-glint: var(--interface-primary-glint, none);
+$secondary-edge: var(--interface-secondary-edge, #{$line});
+$secondary-edge-hover: var(--interface-secondary-edge-hover, #{$soft});
+$secondary-text-hover: var(--interface-secondary-text-hover, #{$text});
+// A line under plain buttons that grows on hover (an image, such as a gradient); none by default.
+$plain-underline: var(--interface-plain-underline, none);
+// Cards: their corners, padding and surface, the edge (an image, such as a gradient) and the pointer's light on
+// the surface and on the edge (colors; none by default).
+$card-radius: var(--interface-card-radius, #{$radius});
+$card-padding: var(--interface-card-padding, 20px);
+$card-background: var(--interface-card-background, #{$raised});
+$card-edge: var(--interface-card-edge, linear-gradient(#{$line}, #{$line}));
+$card-light: var(--interface-card-light, transparent);
+$card-edge-light: var(--interface-card-edge-light, transparent);
 $ease: cubic-bezier(0.22, 1, 0.36, 1);
 
 /** Thin scrollbars in the line color, the same in every browser that styles them. */

@@ -32,3 +32,12 @@ test("an action (an Edit button) sits beside the content, in the middle of the c
   expect(action!.className).toContain("action");
   expect(screen.getByRole("button", { name: "Edit" }).parentElement).toBe(action);
 });
+
+test("its edge catches the pointer's light: the card follows the pointer anywhere on the page", () => {
+  const { container } = render(<Card title="Lit">Inside</Card>);
+  const card = container.firstElementChild as HTMLElement;
+  card.getBoundingClientRect = () => ({ left: 10, top: 20 }) as DOMRect;
+  window.dispatchEvent(Object.assign(new Event("pointermove"), { clientX: 60, clientY: 70 }));
+  expect(card.style.getPropertyValue("--pointer-x")).toBe("50px");
+  expect(card.style.getPropertyValue("--pointer-y")).toBe("50px");
+});

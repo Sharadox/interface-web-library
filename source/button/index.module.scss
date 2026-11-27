@@ -1,24 +1,32 @@
 @use "style/interface" as *;
 
 :where(.button) {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 40px;
-  padding: 0 16px;
-  border: 1px solid transparent;
-  border-radius: $small-radius;
+  gap: $button-gap;
+  min-height: $button-height;
+  padding: $button-padding;
+  border: 0;
+  border-radius: $button-radius;
   font: inherit;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: $button-size;
+  font-weight: $button-weight;
+  letter-spacing: $button-spacing;
+  text-transform: $button-case;
+  text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
   transition:
-    background-color 0.2s,
-    border-color 0.2s,
+    background-color 0.3s,
+    background-size 0.6s $ease,
+    box-shadow 0.6s $ease,
+    color 0.4s,
     opacity 0.2s,
-    transform 0.2s $ease;
+    transform 0.6s $ease;
   @include focus;
   &:active:not(:disabled) {
     transform: scale(0.98);
@@ -32,16 +40,50 @@
     font-size: 16px;
   }
 }
-.primary {
-  background: $accent;
-  color: $accent-text;
+.label {
+  display: inline-flex;
+  align-items: center;
 }
-.quiet {
-  border-color: $line;
+.arrow {
+  display: inline-flex;
+  flex: none;
+  transition: transform 0.5s $ease;
+  svg {
+    font-size: 1.15em;
+  }
+}
+.button:hover:not(:disabled) .arrow {
+  transform: translateX(4px);
+}
+.primary {
+  background: $primary-background;
+  color: $primary-text;
+  box-shadow: $primary-shadow;
+  &:hover:not(:disabled) {
+    box-shadow: $primary-shadow-hover;
+  }
+  // A light that crosses the button on hover, when the company has one.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: $primary-glint;
+    transform: translateX(-120%);
+    transition: transform 0.9s $ease;
+    pointer-events: none;
+  }
+  &:hover:not(:disabled)::after {
+    transform: translateX(120%);
+  }
+}
+.secondary {
   background: transparent;
   color: $text;
+  box-shadow: inset 0 0 0 1px $secondary-edge;
   &:hover:not(:disabled) {
-    border-color: $soft;
+    box-shadow: inset 0 0 0 1px $secondary-edge-hover;
+    color: $secondary-text-hover;
   }
 }
 .danger {
@@ -50,11 +92,12 @@
 }
 .plain {
   min-height: 32px;
-  padding: 0 8px;
-  background: transparent;
+  padding: 0 0 6px;
+  border-radius: 0;
+  background: $plain-underline 0 100% / 30% 1px no-repeat;
   color: $text;
   &:hover:not(:disabled) {
-    background: $surface;
+    background-size: 100% 1px;
   }
 }
 .spinner {
@@ -73,5 +116,10 @@
 @media (prefers-reduced-motion: reduce) {
   .spinner {
     animation-duration: 2.4s;
+  }
+  .button,
+  .arrow,
+  .primary::after {
+    transition: none;
   }
 }

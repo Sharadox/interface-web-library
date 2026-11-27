@@ -1,15 +1,34 @@
 @use "style/interface" as *;
 
 .card {
+  position: relative;
   display: grid;
   gap: 12px;
   min-width: 0;
-  padding: 20px;
+  padding: $card-padding;
+  border-radius: $card-radius;
+  background:
+    radial-gradient(520px circle at var(--pointer-x, 70%) var(--pointer-y, 0%), $card-light, transparent 60%),
+    $card-background;
   text-align: start;
-  @include card;
-  transition:
-    border-color 0.3s $ease,
-    box-shadow 0.3s $ease;
+  isolation: isolate;
+  // The edge: one pixel of the company's edge, brighter where the pointer's light reaches it.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    padding: 1px;
+    border-radius: inherit;
+    background:
+      radial-gradient(300px circle at var(--pointer-x, 70%) var(--pointer-y, 0%), $card-edge-light, transparent 70%),
+      $card-edge;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
   @media (max-width: 480px) {
     padding: 16px;
   }
@@ -35,7 +54,7 @@
   gap: 8px;
 }
 .danger {
-  border-color: $danger;
+  --interface-card-edge: linear-gradient(#{$danger}, #{$danger});
 }
 .title {
   margin: 0;
