@@ -22,21 +22,21 @@ Next.js (or any bundler that handles CSS modules) is enough; icons come from `@s
 `InterfaceTheme({ theme, className? })` sets `--interface-*` custom properties on a wrapper, which every piece reads;
 anything left out keeps its plain default. `interfaceThemeStyle(theme)` gives the same properties as a style object.
 
-| Value                                                                                                                     | What it styles                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `background`, `surface`, `surfaceRaised`                                                                                  | the page, panels, cards, menus and dialogs                                          |
-| `text`, `textSoft`, `line`                                                                                                | text, secondary text, lines                                                         |
-| `accent`, `accentText`, `danger`, `success`                                                                               | buttons, focus rings and links; errors; successes                                   |
-| `radius`, `smallRadius`, `shadow`                                                                                         | corners and the shadow of what floats                                               |
-| `font`, `fontDisplay`                                                                                                     | text and headings                                                                   |
-| `barHeight`                                                                                                               | the site's fixed bar: notifications sit below it                                    |
-| `fieldBackground`, `fieldBorder`, `fieldHeight`, `fieldFocus`                                                             | fields, so they look like the site's own forms                                      |
-| `labelSize`, `labelSpacing`, `labelCase`                                                                                  | field labels (`labelCase: "uppercase"`)                                             |
-| `buttonRadius`, `buttonHeight`, `buttonPadding`, `buttonGap`, `buttonSize`, `buttonWeight`, `buttonSpacing`, `buttonCase` | every button's shape, size and letters                                              |
-| `primaryBackground`, `primaryBackgroundSize`, `primaryText`, `primaryShadow`, `primaryShadowHover`, `primaryGlint`        | the filled button (a gradient works; the glint crosses it on hover)                 |
-| `secondaryEdge`, `secondaryEdgeHover`, `secondaryTextHover`                                                               | the outlined button                                                                 |
-| `plainUnderline`                                                                                                          | a line under plain buttons that grows on hover                                      |
-| `cardRadius`, `cardPadding`, `cardBackground`, `cardEdge`, `cardLight`, `cardEdgeLight`                                   | cards: surface, edge (an image, such as a gradient) and the pointer's light on them |
+| Value                                                                                                                                          | What it styles                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `background`, `surface`, `surfaceRaised`                                                                                                       | the page, panels, cards, menus and dialogs                                          |
+| `text`, `textSoft`, `line`                                                                                                                     | text, secondary text, lines                                                         |
+| `accent`, `accentText`, `danger`, `success`                                                                                                    | buttons, focus rings and links; errors; successes                                   |
+| `radius`, `smallRadius`, `shadow`                                                                                                              | corners and the shadow of what floats                                               |
+| `font`, `fontDisplay`                                                                                                                          | text and headings                                                                   |
+| `barHeight`                                                                                                                                    | the site's fixed bar: notifications sit below it                                    |
+| `fieldBackground`, `fieldBorder`, `fieldHeight`, `fieldFocus`                                                                                  | fields, so they look like the site's own forms                                      |
+| `labelSize`, `labelSpacing`, `labelCase`                                                                                                       | field labels (`labelCase: "uppercase"`)                                             |
+| `buttonRadius`, `buttonHeight`, `buttonPadding`, `buttonGap`, `buttonSize`, `buttonWeight`, `buttonSpacing`, `buttonCase`, `buttonArrowWeight` | every button's shape, size and letters                                              |
+| `primaryBackground`, `primaryBackgroundSize`, `primaryText`, `primaryShadow`, `primaryShadowHover`, `primaryGlint`                             | the filled button (a gradient works; the glint crosses it on hover)                 |
+| `secondaryEdge`, `secondaryEdgeHover`, `secondaryTextHover`                                                                                    | the outlined button                                                                 |
+| `plainUnderline`                                                                                                                               | a line under plain buttons that grows on hover                                      |
+| `cardRadius`, `cardPadding`, `cardBackground`, `cardEdge`, `cardLight`, `cardEdgeLight`                                                        | cards: surface, edge (an image, such as a gradient) and the pointer's light on them |
 
 ```tsx
 <InterfaceTheme theme={{ accent: "var(--gold)", font: "var(--font-body)", labelCase: "uppercase" }}>

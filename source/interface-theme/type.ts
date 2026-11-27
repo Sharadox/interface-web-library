@@ -44,6 +44,8 @@ export interface InterfaceThemeValues {
   buttonWeight: string;
   buttonSpacing: string;
   buttonCase: string;
+  /** The weight of the arrow's line after a button's words (`1.8`). */
+  buttonArrowWeight: string;
   /** The primary (filled) button: its background (a color or gradient), words, shadow and shadow on hover. */
   primaryBackground: string;
   /** The primary background's size: wider than the button (`220% 100%`), a gradient slides across on hover. */

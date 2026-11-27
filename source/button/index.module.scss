@@ -51,6 +51,7 @@
   transition: transform 0.5s $ease;
   svg {
     font-size: 1.15em;
+    stroke-width: $button-arrow-weight;
   }
 }
 .button:hover:not(:disabled) .arrow {

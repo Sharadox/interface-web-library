@@ -35,6 +35,8 @@ $button-size: var(--interface-button-size, 14px);
 $button-weight: var(--interface-button-weight, 600);
 $button-spacing: var(--interface-button-spacing, normal);
 $button-case: var(--interface-button-case, none);
+// The weight of the arrow's line (a number, as SVG strokes are measured).
+$button-arrow-weight: var(--interface-button-arrow-weight, 1.5);
 $primary-background: var(--interface-primary-background, #{$accent});
 // The background's size: wider than the button (`220% 100%`), a gradient slides across on hover, like light on metal.
 $primary-background-size: var(--interface-primary-background-size, auto);
