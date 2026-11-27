@@ -35,6 +35,40 @@ export interface InterfaceThemeValues {
   labelSize: string;
   labelSpacing: string;
   labelCase: string;
+  /** Buttons: corners, height, padding, the gap between icon, words and arrow, size, weight, letter spacing, case. */
+  buttonRadius: string;
+  buttonHeight: string;
+  buttonPadding: string;
+  buttonGap: string;
+  buttonSize: string;
+  buttonWeight: string;
+  buttonSpacing: string;
+  buttonCase: string;
+  /** The weight of the arrow's line after a button's words (`1.8`). */
+  buttonArrowWeight: string;
+  /** The primary (filled) button: its background (a color or gradient), words, shadow and shadow on hover. */
+  primaryBackground: string;
+  /** The primary background's size: wider than the button (`220% 100%`), a gradient slides across on hover. */
+  primaryBackgroundSize: string;
+  primaryText: string;
+  primaryShadow: string;
+  primaryShadowHover: string;
+  /** A light that crosses the primary button on hover (an image, such as a gradient). */
+  primaryGlint: string;
+  /** The secondary (outlined) button: its edge, and its edge and words on hover. */
+  secondaryEdge: string;
+  secondaryEdgeHover: string;
+  secondaryTextHover: string;
+  /** A line under plain buttons that grows on hover (an image, such as a gradient). */
+  plainUnderline: string;
+  /** Cards: corners, padding, surface (a color or gradient) and edge (an image, such as a gradient). */
+  cardRadius: string;
+  cardPadding: string;
+  cardBackground: string;
+  cardEdge: string;
+  /** The pointer's light on a card's surface and on its edge (colors). */
+  cardLight: string;
+  cardEdgeLight: string;
 }
 
 export interface InterfaceThemeProperties {
